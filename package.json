@@ -1,0 +1,30 @@
+{
+  "name": "cdk-docker-pipeline-example",
+  "version": "1.0.0",
+  "description": "Project demonstrating deployment of a docker app with CDK Pipelines",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx ts-node src/index.ts",
+    "build": "tsc",
+    "clean": "rm -rf ./dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kbanman/cdk-docker-pipeline-example.git"
+  },
+  "author": "Kelly Banman <kelly.banman@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/kbanman/cdk-docker-pipeline-example/issues"
+  },
+  "homepage": "https://github.com/kbanman/cdk-docker-pipeline-example#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.7",
+    "@types/node": "^14.0.27",
+    "typescript": "^3.9.7"
+  }
+}

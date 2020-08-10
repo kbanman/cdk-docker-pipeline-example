@@ -1,0 +1,10 @@
+{
+    "app": "npx ts-node bin/app.ts",
+    "context": {
+        "@aws-cdk/core:newStyleStackSynthesis": true,
+        "github-owner": "kbanman",
+        "github-repo": "cdk-docker-pipeline-example",
+        "github-branch": "develop",
+        "github-token-secret": "github-token-secret"
+    }
+}
