@@ -2,13 +2,9 @@ import {CfnOutput, Construct, Stack, StackProps} from '@aws-cdk/core'
 import * as ec2 from '@aws-cdk/aws-ec2'
 import * as ecs from '@aws-cdk/aws-ecs'
 import * as ecs_patterns from '@aws-cdk/aws-ecs-patterns'
-import * as ecr_assets from '@aws-cdk/aws-ecr-assets'
 
 export interface ServiceStackProps extends StackProps {
-  dockerContext?: string
-  dockerFile?: string
-  imageAsset?: ecr_assets.DockerImageAsset
-  image?: ecs.ContainerImage
+  image: ecs.ContainerImage
 }
 
 export class ServiceStack extends Stack {
@@ -19,14 +15,13 @@ export class ServiceStack extends Stack {
   constructor(scope: Construct, id: string, props: ServiceStackProps) {
     super(scope, id, props)
     
-   const image = props.image!
     const vpc = this.vpc = new ec2.Vpc(this, 'DefaultVpc', {maxAzs: 2})
     const ecsCluster = new ecs.Cluster(this, 'EcsCluster', {vpc})
     const taskDef = new ecs.FargateTaskDefinition(this, 'TaskDefinition', {
       memoryLimitMiB: 512,
       cpu: 256,
     })
-    const svc = this.svc = this.fargateService(ecsCluster, taskDef, image)
+    const svc = this.svc = this.fargateService(ecsCluster, taskDef, props.image)
     this.url = new CfnOutput(this, 'SvcUrl', {value: svc.loadBalancer.loadBalancerDnsName})
   }
   
